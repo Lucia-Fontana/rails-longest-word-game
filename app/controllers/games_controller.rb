@@ -10,7 +10,7 @@ class GamesController < ApplicationController
     filepath = URI.open("https://wagon-dictionary.herokuapp.com/#{params['word']}")
     info = JSON.parse(filepath.read)
 
-    if params['word'].chars.all? { |letter| attempt.count(letter) <= grid.count(letter) }
+    if params['word'].chars.all? { |letter| params['word'].count(letter) <= params['letters'].count(letter) }
       if info['found']
         @answer = "Congratulations #{params['word']} is a valid English word"
       else
